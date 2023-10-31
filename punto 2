@@ -1,0 +1,271 @@
+ Cargando paquetes necesarios
+require(pacman)
+
+p_load(
+  tidyverse, # Colección de paquetes relacionados con manipulación y visualización de datos
+  #rio,       # Lectura y escritura de datos en diversos formatos
+  #here   # Ayuda a encontrar archivos en proyectos
+)
+
+install.packages("VGAM")
+
+# Carga el paquete VGAM
+library(VGAM)
+
+H = 1
+pi_0= c(.4,.3,.3)
+diff = 1
+iter = 1
+
+z = c(1,1,1)
+k = c(1,1,1)
+w = c(1, 1,1)
+error = 0.0001
+
+A = c(1, 1,1)
+
+theta=.1
+#while(diff>error){
+  
+  #Computar la DIstribución espacial de la población
+  N = pi_0*H
+  N
+  # Calculate rent
+  R = z + k*N
+  R
+  # Generar una variable aleatoria Frechet
+  scale <- 1
+  shape <- 1
+  fre <- rfrechet(1, shape = shape, scale = scale)
+  # Cálculo de la población dada la renta
+  pi_1 = ((w*A/R)^theta);
+  pi_1 = pi_1/sum(pi_1);
+  pi_1
+  #crear la variable 
+  ga=w*A 
+  #  % Verificar convergencia
+  diff = max(abs(pi_0-pi_1));
+  diff
+  #  % Update rent
+  pi_0 = 0.7*pi_0 + 0.3*pi_1
+  pi_0
+  #% counter
+  iter = iter + 1
+  
+#}
+
+N
+R
+
+###PUNTO 2##
+H = 1
+pi_0= c(.33,.33,.33)
+diff = 1
+iter = 1
+
+z = c(1,1,1)
+k = c(1,1,1)
+w = c(1,1,1)
+error = 0.0001
+
+A = c(1, 1,1)
+
+while(diff>error){
+
+#Computar la DIstribución espacial de la población
+N = pi_0*H
+N
+# Calculate rent
+R = z + k*N
+R
+# Generar una variable aleatoria Frechet
+scale <- 0.1
+shape <- 4
+fre <- rfrechet(1, shape = shape, scale = scale)
+# Cálculo de la población dada la renta
+pi_1 = ((w*A/R)^shape)
+pi_1 = pi_1/sum(pi_1)
+pi_1
+#crear la variable 
+ga=w*A 
+#  % Verificar convergencia
+diff = max(abs(pi_0-pi_1));
+diff
+#  % Update rent
+pi_0 = 0.7*pi_0 + 0.3*pi_1
+pi_0
+#% counter
+iter = iter + 1
+
+}
+
+N
+R
+
+
+###variar salario##
+H = 1
+pi_0= c(.33,.33,.33)
+diff = 1
+iter = 1
+
+z = c(1,1,1)
+k = c(1,1,1)
+w = c(1,2,1)
+error = 0.0001
+
+A = c(1, 1,1)
+
+while(diff>error){
+  
+  #Computar la DIstribución espacial de la población
+  N = pi_0*H
+  N
+  # Calculate rent
+  R = z + k*N
+  R
+  # Generar una variable aleatoria Frechet
+  scale <- 4
+  shape <- 0.1
+  # Cálculo de la población dada la renta
+  pi_1 = ((w*A/R)^shape)*scale;
+  pi_1 = pi_1/sum(pi_1);
+  pi_1
+  #  % Verificar convergencia
+  diff = max(abs(pi_0-pi_1));
+  diff
+  #  % Update rent
+  pi_0 = 0.7*pi_0 + 0.3*pi_1
+  pi_0
+  #% counter
+  iter = iter + 1
+  
+}
+
+N
+R
+
+###variar amenidades##
+H = 1
+pi_0= c(.33,.33,.33)
+diff = 1
+iter = 1
+
+z = c(1,1,1)
+k = c(1,1,1)
+w = c(1,1,1)
+error = 0.0001
+
+A = c(3, 1,2)
+
+while(diff>error){
+  
+  #Computar la DIstribución espacial de la población
+  N = pi_0*H
+  N
+  # Calculate rent
+  R = z + k*N
+  R
+  # Generar una variable aleatoria Frechet
+  scale <- 0.1
+  shape <- 4
+  # Cálculo de la población dada la renta
+  pi_1 = ((w*A/R)^shape)*scale;
+  pi_1 = pi_1/sum(pi_1);
+  pi_1
+  #  % Verificar convergencia
+  diff = max(abs(pi_0-pi_1));
+  diff
+  #  % Update rent
+  pi_0 = 0.7*pi_0 + 0.3*pi_1
+  pi_0
+  #% counter
+  iter = iter + 1
+  
+}
+
+N
+R
+
+
+###TERCERO##
+H = 1
+pi_0= c(.33,.33,.33)
+diff = 1
+iter = 1
+
+z = c(1,1,1)
+k = c(1,3,0.5)
+w = c(1,1,1)
+error = 0.0001
+
+A = c(1, 1, 1)
+
+while(diff>error){
+  
+  #Computar la DIstribución espacial de la población
+  N = pi_0*H
+  N
+  # Calculate rent
+  R = z + k*N
+  R
+  # Generar una variable aleatoria Frechet
+  scale <- 1
+  shape <- 1
+  # Cálculo de la población dada la renta
+  pi_1 = ((w*A/R)^shape)*scale;
+  pi_1 = pi_1/sum(pi_1);
+  pi_1
+  #  % Verificar convergencia
+  diff = max(abs(pi_0-pi_1));
+  diff
+  #  % Update rent
+  pi_0 = 0.7*pi_0 + 0.3*pi_1
+  pi_0
+  #% counter
+  iter = iter + 1
+  
+}
+N
+R
+
+###### SALARIO 
+H = 1
+pi_0= c(.33,.33,.33)
+diff = 1
+iter = 1
+
+z = c(1,1,1)
+k = c(1,3,0.5)
+w = c(1,1,1)
+error = 0.0001
+
+A = c(3, 1, 2)
+
+while(diff>error){
+  
+  #Computar la DIstribución espacial de la población
+  N = pi_0*H
+  N
+  # Calculate rent
+  R = z + k*N
+  R
+  # Generar una variable aleatoria Frechet
+  scale <- 1
+  shape <- 1
+  # Cálculo de la población dada la renta
+  pi_1 = ((w*A/R)^shape)*scale;
+  pi_1 = pi_1/sum(pi_1);
+  pi_1
+  #  % Verificar convergencia
+  diff = max(abs(pi_0-pi_1));
+  diff
+  #  % Update rent
+  pi_0 = 0.7*pi_0 + 0.3*pi_1
+  pi_0
+  #% counter
+  iter = iter + 1
+  
+}
+N
+R
